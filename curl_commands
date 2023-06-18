@@ -1,0 +1,3 @@
+curl localhost:8080/query/2 \
+  -H "Content-Type: application/json" \
+  -H "query: im so confused on erica" \
