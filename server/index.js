@@ -29,7 +29,6 @@ app.get('/load', (req, res) => {
   var parsed = url.parse(link)
   const filename = path.basename(parsed.pathname).split('.')[0]
 
-
   const file = fs.createWriteStream(`${filename}.pdf`)
   const request = https.get(link, async function (response) {
     response.pipe(file)
@@ -71,7 +70,7 @@ app.get('/load', (req, res) => {
         // table.add(data)
       })
 
-      res.sendStatus(200)
+      res.send({ table: filename })
     });
 
   })
@@ -85,17 +84,39 @@ app.get('/query/:table', async function (req, res) {
     model: 'text-embedding-ada-002',
     input: query,
   })
+
   const results = await table
     .search(queryEmbedding.data.data[0].embedding)
     .select(['text', 'context'])
     .limit(5)
     .execute()
 
-  createPrompt(query, results);
-  const response = await openai.createChatCompletion({
-    model: 'gpt-4-0613',
-    messages: [{ role: 'user', content: createPrompt(query, results) }],
-  })
+  const isReply = req.headers.isreply === "true"
+  let response
+  if (isReply) {
+    const personalityTable = await db.openTable("personalities")
+    const currentReplies = req.headers.currentreplies
+    const personalityEmbedding = await openai.createEmbedding({
+      model: 'text-embedding-ada-002',
+      input: currentReplies,
+    })
+    const personalities = await personalityTable
+      .search(personalityEmbedding.data.data[0].embedding)
+      .select(['text'])
+      .limit(5)
+      .execute()
+
+    response = await openai.createChatCompletion({
+      model: 'gpt-3.5-turbo-16k',
+      messages: [{ role: 'user', content: createPrompt(query, results, personalities, currentReplies) }],
+    })
+  } else {
+    response = await openai.createChatCompletion({
+      model: 'gpt-3.5-turbo-16k',
+      messages: [{ role: 'user', content: createPrompt(query, results) }],
+    })
+  }
+
   const replies = JSON.parse(response.data.choices[0].message.content)
   console.log(replies)
 
@@ -118,10 +139,8 @@ app.get('/query/:table', async function (req, res) {
   const personalityTable = await db.openTable('personalities')
   personalityTable.add(replyData)
 
-
   res.send(response.data.choices[0].message.content)
 })
-
 
 function contextualize(rows, contextSize, groupColumn) {
   const grouped = []
@@ -143,14 +162,22 @@ function contextualize(rows, contextSize, groupColumn) {
   return data
 }
 
-function createPrompt(query, context) {
+function createPrompt(query, context, personalities = "", currentReplies = "") {
   let prompt =
-    'Provide 10 reddit-style and twitter-sized responses from both  in json string form in an array with parameters username and tweet (no additional text in your response) each with different personalities helping someone learn the textbook material below.\n\n' +
+    'Provide 10 reddit-style and twitter-sized responses in json string form in an array with parameters username and tweet (no additional text in your response) each with different personalities helping someone learn the textbook material below.\n\n' +
 
-    'Context:\n'
+    'Textbook Context:\n'
 
   // need to make sure our prompt is not larger than max size
   prompt = prompt + context.map(c => c.context).join('\n\n---\n\n').substring(0, 3750)
-  prompt = prompt + `\n\nQuestion: ${query}\nAnswer:`
+  prompt = prompt + `Similar Personalities:\n\n ${personalities ? personalities.map(p => `user: ${p.username} - ${p.text}`).join('\n\n---\n\n').substring(0, 3750) : ""}\n\n`
+  prompt = prompt + `Current Replies:\n\n ${JSON.stringify(currentReplies)} \n\n`
+  prompt = prompt + `\n\nQuestion: ${query}\n`
+  if (personalities) {
+    prompt = prompt + `Reply with a few more responses from the same users:`
+  } else {
+    prompt = prompt + `Answer with 10 responses:`
+  }
+  console.log(prompt)
   return prompt
 }
