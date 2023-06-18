@@ -1,4 +1,4 @@
-##ThinkTok
+## ThinkTok
 
 ## The problem with learning today
 Students with ADHD face many obstacles to their learning. Many of these students have difficulty
