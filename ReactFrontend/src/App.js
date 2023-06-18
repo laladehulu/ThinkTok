@@ -10,6 +10,7 @@ import {
   Routes,
   Route
 } from "react-router-dom";
+import { fetchThreadJSONTree } from './APICalls';
 
 
 let sampleThread = {
@@ -24,6 +25,14 @@ function App() {
     setThreads([...threads,newThread]);
   }
 
+  function fetchUpdatedThreadJson(){
+
+  }
+  useEffect( ()=>{
+   
+    console.log("thread changed", threads);
+   return ()=>{}
+  },[threads])
   return (
     <>
     <div className="Header sticky-top shadow-sm">
