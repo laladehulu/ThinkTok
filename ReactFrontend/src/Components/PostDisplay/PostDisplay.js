@@ -53,14 +53,14 @@ export default function PostDisplay() {
 
     return <>
         <div className="thread-display row text-left border rounded flex" style={{ width: "50vw"}} ref ={selfRef} >
-            <div className="col-1 d-flex flex-column justify-content-center text-dark">
+            <div className="col-sm-1 d-flex flex-column justify-content-center text-dark">
                 <a type="button" onClickCapture={incrementVote} className="py-3 voteButton">△</a>
                 <p id="voteNumber" className="justify-content-center">5</p>
                 <a type="button" onClickCapture={decrementVote} className=" py-3 voteButton">
                 ▽
                 </a>
             </div>
-            <div className="col-11 d-flex text-dark position-relative contentpadding py-4 border-left">
+            <div className="col-sm-11 d-flex text-dark position-relative contentpadding py-4 border-left">
                 <div className="text-left" style={{textAlign:"left"}}>
                     <div className="font-weight-bold threadTitle" style={{fontSize:"1.8rem"}}>Hello Title</div>
                     <div style={{ fontSize: "0.8rem", fontWeight: "300"}}>

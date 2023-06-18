@@ -1,0 +1,14 @@
+.logoButton {
+    transition: 0.2s;
+}
+
+.logoButton:hover {
+    box-shadow: 2px 2px 5px lightgray;
+    border-radius: 10px;
+    transition: 0.2;
+}
+
+.invert {
+    -webkit-filter: invert(1);
+    filter: invert(1);
+}
