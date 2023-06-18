@@ -26,7 +26,7 @@
 }
 
 .voteButton {
-    color: #254ef4;
+    color: black;
     outline: none;
     border: none;
     text-decoration: none;
@@ -35,7 +35,7 @@
 .voteButton:hover {
     color: #254ef4;
     border-radius: 5px;
-    box-shadow: 2px 2px 2px lightgray;
+    box-shadow: 2px 2px 5px gray;
     transition: 0.2s;
 }
 
@@ -48,6 +48,3 @@
     padding-left: 0;
     padding-right: 1rem;
 }
-
-.acolor { color: #8c52ff; text-decoration: none !important; }
-.acolor:hover { color: #8c52ff; text-decoration: none !important; }

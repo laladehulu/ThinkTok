@@ -6,46 +6,46 @@
 }
 .upload-url-text{
     width: 100vw;
-
+    
 
 }
 .comment{
     display: flex;
-    width: auto;
-    margin-top: 20px;
 
+    
 }
 .comment-left{
-    width: 10%;
+    width: 20%;
     position: relative;
 
 }
 .comment-pfp{
-    width: 40px;
-    height: 40px;
-    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
     position: absolute;
     right: 10px;
+    border: 1px solid purple;
     background: black;
 }
 .comment-right{
-    width: 90%;
-
+    width: 80%;
+    
 }
 .comment-name{
-    font-weight: 600;
     font-size: 1rem;
-    text-align: left;
     margin-bottom: 2px;
 }
 .comment-text{
     border-radius: 5px;
-    text-align: left;
+    border: 1px solid purple;;
+    padding: 20px;
 }
 .comment-interaction{
     display: flex;
-
+   
 }
-
-.acolor { color: #8c52ff; text-decoration: none !important; }
-.acolor:hover { color: #8c52ff; text-decoration: none !important; }
+.comment-interaction > span {
+     margin-right: 2rem;
+   
+}

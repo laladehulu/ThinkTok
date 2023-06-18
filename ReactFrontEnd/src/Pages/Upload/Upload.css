@@ -1,0 +1,31 @@
+.dropzone{
+    width: 80vw;
+    height: 40vh;
+    background: rgb(227, 227, 227);
+    border: 1px dashed black;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.upload-url{
+    width: 80vw;
+
+    position: relative;
+
+}
+.upload-url-input{
+
+    left: 0;
+    position: absolute;
+    width: 90%;
+}
+.upload-url-submit{
+    width: 10%;
+    right: 0;
+    position: absolute;
+}
+.drop-page{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

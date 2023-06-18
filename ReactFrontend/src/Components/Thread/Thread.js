@@ -8,15 +8,14 @@ let sampleComment = {
     pfpURL:"",
     text:"",
 }
-export default function Thread(){
-    const [comments, setComments] = useState([]);
-
+export default function Thread({comments}){
+   
     return <>
 
         <PostDisplay />
          {
 
-            comments.map((comment)=>{
+            comments?.map((comment)=>{
                 return <Comment username={comment.username}
                 pfpURL={comment.pfpURL}
                 text={comment.text}
@@ -27,7 +26,7 @@ export default function Thread(){
 
          }
          <button onClick={()=>{
-            setComments([...comments, {username:"ad",pfpURL:"sss",text:"sass"}])
+           // setComments([...comments, {username:"ad",pfpURL:"sss",text:"sass"}])
          }}>
 
          </button>

@@ -2,14 +2,20 @@ import logo from './logo.svg';
 import './App.css';
 import Comment from './Components/Comment/Comment'
 import Thread from "./Components/Thread/Thread"
-import {useState} from "react"
+import Upload from "./Pages/Upload/Upload"
+import {useEffect, useState} from "react"
 import ThreadDisplay from './Components/ThreadDisplay/ThreadDisplay';
+
 import Header from './Components/Header/Header';
+import AICommunity from "./Pages/AICommunity/AICommunity"
+
 import {
   BrowserRouter as Router,
   Routes,
-  Route
+  Route,
+  useNavigate
 } from "react-router-dom";
+import { fetchThreadJSONTree } from './APICalls';
 
 
 let sampleThread = {
@@ -24,13 +30,20 @@ function App() {
     setThreads([...threads,newThread]);
   }
 
+  function fetchUpdatedThreadJson(){
+
+  }
+  useEffect( ()=>{
+   
+    console.log("thread changed", threads);
+   return ()=>{}
+  },[threads])
+
   return (
     <>
     <div className="Header sticky-top shadow-sm">
-      {threads.map(() => {
-        return <Header>
+    <Header>
         </Header>;
-      })}
     </div>
 
 
@@ -38,12 +51,14 @@ function App() {
 
       <header className="App-header">
 
-        <div className='display-flex flex-column responsiveSize justify-content-center' style={{ height: "80vh" }}>
+        <div className='display-flex flex-column ' style={{ height: "80vh" }}>
           <Router>
             <Routes>
-              <Route path="/" element= {threads.map((thread)=>{
-                return <ThreadDisplay  title = {thread.title}  username = {thread.username} text = {thread.text} />})} />
+                  
+            <Route path="/" element={<Upload setThreads={setThreads} />}></Route>
+              <Route path="/GenerativeCommunity" element= {<AICommunity threads={threads}></AICommunity>} />
               <Route path="/thread" element={<Thread makeThread={makeThread} />}></Route>
+             
             </Routes>
           </Router>
         </div>
