@@ -1,7 +1,8 @@
 
 import "./Thread.css"
 import Comment from "../Comment/Comment"
-import {useState} from "react"
+import {useEffect, useState} from "react"
+import PostDisplay from "../PostDisplay/PostDisplay";
 let sampleComment = {
     username:"",
     pfpURL:"",
@@ -9,15 +10,17 @@ let sampleComment = {
 }
 export default function Thread(){
     const [comments, setComments] = useState([]);
-    
+
     return <>
+
+        <PostDisplay />
          {
-            
+
             comments.map((comment)=>{
                 return <Comment username={comment.username}
                 pfpURL={comment.pfpURL}
                 text={comment.text}
-                
+
                 ></Comment>
 
             })

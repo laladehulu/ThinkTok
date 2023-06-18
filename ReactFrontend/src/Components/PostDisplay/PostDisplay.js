@@ -1,5 +1,5 @@
 
-import "./ThreadDisplay.css"
+import "./PostDisplay.css"
 import Comment from "../Comment/Comment"
 import {useRef, useState, useEffect,useLayoutEffect } from "react"
 import gsap, {  } from "gsap"
@@ -8,9 +8,14 @@ let sampleComment = {
     pfpURL: "",
     text: "",
 }
-export default function ThreadDisplay() {
+export default function PostDisplay() {
     const [comments, setComments] = useState([]);
     const selfRef = useRef();
+    var voteNumber = -99;
+    var voted = 0;
+    // 0: not voted
+    // 1: upvoted
+    // 2: downvoted
 
     useLayoutEffect(() => {
         let ctx = gsap.context(() => {
@@ -25,25 +30,33 @@ export default function ThreadDisplay() {
         return text.length>350? (text.slice(0,350)+"........."): text
     }
 
-    function decrementVote(e){
-        let voteNumber = document.getElementById("voteNumber") ? document.getElementById("voteNumber") : 0;
-        console.log(voteNumber);
-        if (voteNumber.innerHTML > 0) {
-            voteNumber.innerHTML = parseInt(voteNumber.innerHTML)-1;
-        }
+    useEffect(() => {
+        voteNumber = document.getElementById("voteNumber") ? document.getElementById("voteNumber").innerHTML : 0;
+    },);
 
-        if (!e) var e = window.event;
-        e.cancelBubble = true;
-        if (e.stopPropagation) e.stopPropagation();
+    function decrementVote(){
+        let temp = document.getElementById("voteNumber");
+        if (temp.innerHTML > 0 && voted != 2) {
+            temp.innerHTML = parseInt(voteNumber)-1;
+            voted = 2;
+        }
+    }
+
+    function incrementVote(){
+        let temp = document.getElementById("voteNumber");
+        if (voted != 1) {
+            temp.innerHTML = parseInt(voteNumber)+1;
+            voted = 1;
+        }
     }
 
 
     return <>
-        <div onClick={event => {window.location.href='/Thread'}} className="thread-display row text-left border rounded flex" style={{ width: "50vw"}} ref ={selfRef} >
+        <div className="thread-display row text-left border rounded flex" style={{ width: "50vw"}} ref ={selfRef} >
             <div className="col-1 d-flex flex-column justify-content-center text-dark">
-                <a type="button" onClickCapture={e => decrementVote(e)} className="py-3 voteButton">△</a>
+                <a type="button" onClickCapture={incrementVote} className="py-3 voteButton">△</a>
                 <p id="voteNumber" className="justify-content-center">5</p>
-                <a type="button" onClickCapture={e => decrementVote(e)} className=" py-3 voteButton">
+                <a type="button" onClickCapture={decrementVote} className=" py-3 voteButton">
                 ▽
                 </a>
             </div>

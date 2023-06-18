@@ -4,6 +4,12 @@ import Comment from './Components/Comment/Comment'
 import Thread from "./Components/Thread/Thread"
 import {useState} from "react"
 import ThreadDisplay from './Components/ThreadDisplay/ThreadDisplay';
+import Header from './Components/Header/Header';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from "react-router-dom";
 
 
 let sampleThread = {
@@ -19,23 +25,35 @@ function App() {
   }
 
   return (
-    
+    <>
+    <div className="Header sticky-top shadow-sm">
+      {threads.map(() => {
+        return <Header>
+        </Header>;
+      })}
+    </div>
+
+
     <div className="App">
 
       <header className="App-header">
 
-        <div className='mt-2 display-flex flex-column ' style={{height:"80vh"}}>
-            {threads.map((thread)=>{
-              return <ThreadDisplay  title = {thread.title}  username = {thread.username} text = {thread.text} >
-                
-              </ThreadDisplay>
-            })}
+        <div className='display-flex flex-column ' style={{ height: "80vh" }}>
+          <Router>
+            <Routes>
+              <Route path="/" element= {threads.map((thread)=>{
+                return <ThreadDisplay  title = {thread.title}  username = {thread.username} text = {thread.text} />})} />
+              <Route path="/thread" element={<Thread makeThread={makeThread} />}></Route>
+            </Routes>
+          </Router>
         </div>
 
-      
-      
+
+
       </header>
     </div>
+
+    </>
   );
 }
 
