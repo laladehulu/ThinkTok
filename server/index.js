@@ -33,7 +33,7 @@ let sampleJSONTree = {
   ]
 }
 
-app.use(express.static('pain2/build'))
+app.use(express.static('ReactFrontEnd/build'))
 const db = await vectordb.connect(uri)
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
