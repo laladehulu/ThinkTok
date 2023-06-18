@@ -66,7 +66,7 @@ app.get('/load', (req, res) => {
   })
 })
 
-app.get('/query/{table}', async function (req, res) {
+app.get('/query/:table', async function (req, res) {
   const table = await db.openTable(req.params.table)
 
   const query = 'how do I program in eliza'
