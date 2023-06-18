@@ -1,28 +1,34 @@
 
+import { useEffect } from "react";
 import "./Comment.css"
-export default function Comment({username,text,pfpURL}){
-    return <>
-         <div class="comment"> 
-                <div class="comment-left">
-                    <div class="comment-pfp">
-                        
-                    </div>
-                </div>
-                <div class="comment-right">
-                    <div class="comment-name">
-                        {username}
-                    </div>
-                    <div class="comment-text">
-                   {text}
-                    </div>
-                    <div class="comment-interaction">
-                        <span>like</span>
-                        <span>comment</span>
-                        <span>share</span>
-                    </div>
-                </div>
+import FeatherIcon from 'feather-icons-react';
 
+export default function Comment({username,text,pfpURL}){
+
+    const generatePfp = () => 'https://source.unsplash.com/random/200x200/?avatar';
+
+
+    return <>
+         <div class="shadow-sm comment p-3 border rounded">
+            <div class="comment-left">
+                <img class="comment-pfp" />
             </div>
+            <div class="comment-right">
+                <div class="comment-name">
+                    {username}
+                </div>
+                <div class="comment-text">
+                {text}
+                </div>
+                <div class="comment-interaction d-flex mt-2">
+                    <a type="button" class="flex-fill w-75 acolor"><FeatherIcon icon="thumbs-up" /></a>
+                    <a type="button" class="flex-fill w-75 acolor"><FeatherIcon icon="message-circle"/></a>
+                    <a type="button" class="flex-fill w-75 acolor"><FeatherIcon icon="share-2" /></a>
+                </div>
+            </div>
+
+        </div>
+
     </>
 
 }

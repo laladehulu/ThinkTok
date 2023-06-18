@@ -38,7 +38,7 @@ function App() {
 
       <header className="App-header">
 
-        <div className='display-flex flex-column ' style={{ height: "80vh" }}>
+        <div className='display-flex flex-column responsiveSize justify-content-center' style={{ height: "80vh" }}>
           <Router>
             <Routes>
               <Route path="/" element= {threads.map((thread)=>{

@@ -1,3 +1,36 @@
+@media (max-width: 991.98px) {
+  .responsiveSize {
+    width: 70%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .responsiveSize {
+    width: 80%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .responsiveSize {
+    width: 90%;
+    justify-content: center;
+  }
+}
+
+
+
+@media (min-width: 992px) {
+  .responsiveSize {
+    width: 50%;
+    justify-content: center;
+  }
+}
+
+
+
+
 .Header {
   background-color: #ffffff;
 

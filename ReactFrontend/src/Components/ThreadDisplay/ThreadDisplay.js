@@ -2,6 +2,8 @@
 import "./ThreadDisplay.css"
 import Comment from "../Comment/Comment"
 import {useRef, useState, useEffect,useLayoutEffect } from "react"
+import FeatherIcon from 'feather-icons-react';
+
 import gsap, {  } from "gsap"
 let sampleComment = {
     username: "",
@@ -60,15 +62,13 @@ export default function ThreadDisplay() {
 
 
     return <>
-        <div onClick={event => {window.location.href='/Thread'}} className="thread-display row text-left border rounded flex" style={{ width: "50vw"}} ref ={selfRef} >
-            <div className="col-1 d-flex flex-column justify-content-center text-dark">
-                <a type="button" onClickCapture={e => incrementVote(e)} className="py-3 voteButton">△</a>
+        <div onClick={event => {window.location.href='/Thread'}} className="thread-display w-auto row text-left border rounded flex" style={{ width: "50vw"}} ref ={selfRef} >
+            <div className="col-sm-1 col-2 d-flex flex-column justify-content-center text-dark">
+                <a type="button" onClickCapture={e => incrementVote(e)} className="acolor py-2 voteButton"><FeatherIcon icon="arrow-up" /></a>
                 <p id="voteNumber" className="justify-content-center">5</p>
-                <a type="button" onClickCapture={e => decrementVote(e)} className=" py-3 voteButton">
-                ▽
-                </a>
+                <a type="button" onClickCapture={e => decrementVote(e)} className="acolor py-2 voteButton"><FeatherIcon icon="arrow-down" /></a>
             </div>
-            <div className="col-11 d-flex text-dark position-relative contentpadding py-4 border-left">
+            <div className="col-sm-11 col-10 d-flex text-dark position-relative contentpadding py-4 border-left">
                 <div className="text-left" style={{textAlign:"left"}}>
                     <div className="font-weight-bold threadTitle" style={{fontSize:"1.8rem"}}>Hello Title</div>
                     <div style={{ fontSize: "0.8rem", fontWeight: "300"}}>
