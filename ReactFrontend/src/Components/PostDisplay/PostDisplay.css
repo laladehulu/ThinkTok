@@ -26,7 +26,7 @@
 }
 
 .voteButton {
-    color: black;
+    color: #254ef4;
     outline: none;
     border: none;
     text-decoration: none;
@@ -50,3 +50,6 @@
     padding-left: 0;
     padding-right: 1rem;
 }
+
+.acolor { color: #8c52ff; text-decoration: none !important; }
+.acolor:hover { color: #8c52ff; text-decoration: none !important; }
