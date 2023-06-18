@@ -13,6 +13,27 @@ import url from 'url'
 const app = express()
 
 const uri = "data/lancedb";
+let sampleJSONTree = {
+  threads:[
+      {
+          title: "heel",
+          username :"aaa",
+          text :"dddd",
+          comments:[{
+              
+          }]
+      },
+      {
+          
+      },
+      {
+          
+      }
+
+  ]
+}
+
+app.use(express.static('pain2/build'))
 const db = await vectordb.connect(uri)
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
