@@ -1,0 +1,62 @@
+.comment{
+    display: flex;
+    width: auto;
+    margin-top: 20px;
+
+}
+
+.comment-right{
+    width: 100%;
+}
+
+.comment-text{
+    width: 100%;
+    border-radius: 5px;
+    text-align: left;
+}
+.make-post{
+
+    position: absolute;
+    color: #8c52ff;
+    background: white;
+    padding: 20px;
+    bottom: 50px;
+    right: 100px;
+
+
+}
+
+.make-post-overlay{
+    width: 70vw;
+    left: 15vw;
+    position: fixed;
+    bottom: 0;
+    height: 250px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+
+}
+
+.comment-text{
+    width: 100%;
+    border-radius: 5px;
+    text-align: left;
+}
+
+.postTitle {
+    text-align: left;
+    font-weight: 300;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+*:focus {
+    outline: none;
+}
+
+.inputRemoveBorder {
+    border: none;
+    outline: none;
+    margin-top: -15px;
+}

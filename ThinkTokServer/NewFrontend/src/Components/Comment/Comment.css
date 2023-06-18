@@ -1,0 +1,51 @@
+.upload-section{
+    width: 100%;
+    height: 20%;
+
+
+}
+.upload-url-text{
+    width: 100vw;
+
+
+}
+.comment{
+    display: flex;
+    width: auto;
+    margin-top: 20px;
+
+}
+.comment-left{
+    width: 10%;
+    position: relative;
+
+}
+.comment-pfp{
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    position: absolute;
+    right: 10px;
+    background: black;
+}
+.comment-right{
+    width: 90%;
+
+}
+.comment-name{
+    font-weight: 600;
+    font-size: 1rem;
+    text-align: left;
+    margin-bottom: 2px;
+}
+.comment-text{
+    border-radius: 5px;
+    text-align: left;
+}
+.comment-interaction{
+    display: flex;
+
+}
+
+.acolor { color: #8c52ff; text-decoration: none !important; }
+.acolor:hover { color: #8c52ff; text-decoration: none !important; }
