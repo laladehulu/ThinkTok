@@ -39,6 +39,8 @@
     transition: 0.2s;
 }
 
+.voteButtonClicked
+
 #voteNumber {
     margin: 0;
     height: auto;
